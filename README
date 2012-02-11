@@ -1,0 +1,6 @@
+jsDropbox
+=========
+
+This is a javascript implementation of Dropbox REST API. I developed it for dropbox implementation in PhoneGAP application. Tested for PhoneGAP only. Licenced under Mozilla Public Licence 2.0.
+
+You can quickly test the library by opening index.html in google-chrome with  "--allow-file-access-from-files --disable-web-security" arguments. Documentation is pending.
