@@ -100,38 +100,56 @@ dropbox.setupoauth = function(userEmail, userPass, success, failure) {
 
             //Login in dropbox
             oauth.post(loginURL, loginData, function(data) {
-                var allowData = {
-                    allow_access : "Allow"
-                };
-                oauth.post(url, allowData, function(data) {
+                
+                //Get Authorize Token From Server
+                oauth.get(url,function(data){
+                    
+                    console.log(data);
+                    
+                    //Extract Authorize Token From Page
+                    textString = data.text;
+                    pos = textString.search("TOKEN");
+                    relevent = textString.slice(pos,pos+40);
+                    pos2 = relevent.search(",");
+                    relevent = relevent.slice(0,pos2);
+                    releventArray = relevent.split("'");
+                    authorizeToken = releventArray[1]
+                    
+                    //Authorization POST Data
+                    allowData = {allow_access : "Continue",
+                                 oauth_token:requestToken,
+                                 t : authorizeToken
+                    }
+                    oauth.post(url, allowData, function(data) {
 
-                    //Get Access Token
-                    oauth.post(accessURL, accessData, function(data) {
+                        //Get Access Token
+                        oauth.post(accessURL, accessData, function(data) {
 
-                        //Split OAuth AcessToken for later use
-                        var accessTokenTemp = data["text"].split("&");
-                        var accessTokenSecret = accessTokenTemp[0].split('=');
-                        accessTokenSecret = accessTokenSecret[1];
-                        var accessToken = accessTokenTemp[1].split('=');
-                        accessToken = accessToken[1];
+                            //Split OAuth AcessToken for later use
+                            var accessTokenTemp = data["text"].split("&");
+                            var accessTokenSecret = accessTokenTemp[0].split('=');
+                            accessTokenSecret = accessTokenSecret[1];
+                            var accessToken = accessTokenTemp[1].split('=');
+                            accessToken = accessToken[1];
 
-                        oauth.setAccessToken(accessToken, accessTokenSecret);
-                        
-                        //stores OAuth access Token in html5 storage with timestamp 
-                        var dateValue = new Date();
-                        dateValue = dateValue.getTime();
-                        var accessTokenString = accessToken + '&' + accessTokenSecret + '&' + dateValue;
-                        window.localStorage.setItem(dropbox.htmlAccessStorageKey, accessTokenString);
+                            oauth.setAccessToken(accessToken, accessTokenSecret);
+                            
+                            //stores OAuth access Token in html5 storage with timestamp 
+                            var dateValue = new Date();
+                            dateValue = dateValue.getTime();
+                            var accessTokenString = accessToken + '&' + accessTokenSecret + '&' + dateValue;
+                            window.localStorage.setItem(dropbox.htmlAccessStorageKey, accessTokenString);
 
-                        //setup OAuth object
-                        dropbox.oauth = oauth;
+                            //setup OAuth object
+                            dropbox.oauth = oauth;
 
-                        //run the success function
-                        if( typeof (success) == "function")
-                            success();
+                            //run the success function
+                            if( typeof (success) == "function")
+                                success();
+                        }, failure);
                     }, failure);
                 }, failure);
-            }, failure);
+            },failure);
         }, failure);
     } catch(error) {
         var errorObject = {};
