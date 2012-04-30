@@ -1,7 +1,7 @@
 /*                                                                            *
  *  jsDropbox v1.0                                                            *
  *  A javascript API to access dropbox                                        *
- *  https://github.com/perfectayush/jsDropbox 
+ *  https://github.com/perfectayush/jsDropbox                                 *
  *  Copyright Ayush Goyal 2012                                                *
  *                                                                            *
  *  Uses the Javascript OAuth library by Rob Griffiths aka bytespider         *
