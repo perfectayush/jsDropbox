@@ -1,19 +1,21 @@
 /*                                                                            *
  *  jsDropbox v1.0                                                            *
+ *  A javascript API to access dropbox                                        *
+ *  https://github.com/perfectayush/jsDropbox 
  *  Copyright Ayush Goyal 2012                                                *
- *	                                                                          *
+ *                                                                            *
  *  Uses the Javascript OAuth library by Rob Griffiths aka bytespider         *
- *  https://github.com/perfectayush/jsDropbox                                 *
- *	                                                                          *
+ *  https://github.com/bytespider/jsOAuth                                     *
+ *                                                                            *
  *  Also uses OAuthSimple Javascript library                                  *
  *  http://unitedheroes.net/OAuthSimple/                                      *
- *	                                                                          *
+ *                                                                            *
  *  Licensed under the Mozilla Public License, Version 2.0 (the "License");   *
  *  you may not use this file except in compliance with the License.          *
  *  You may obtain a copy of the License at                                   *
- *	                                                                          *
+ *                                                                            *
  *     http://www.mozilla.org/MPL/2.0/                                        *
- *	                                                                          *
+ *                                                                            *
  *  Unless required by applicable law or agreed to in writing, software       *
  *  distributed under the License is distributed on an "AS IS" BASIS,         *
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  *
